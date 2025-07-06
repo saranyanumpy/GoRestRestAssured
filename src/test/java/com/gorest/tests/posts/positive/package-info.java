@@ -1,0 +1,1 @@
+package com.gorest.tests.posts.positive;

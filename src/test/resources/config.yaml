@@ -1,0 +1,4 @@
+qa:
+  baseUrl:https://gorest.co.in/public/v1
+  token:a64d9dde7c556f9f1629b67bb5af591d459e4e2cc4537b01679a693cce3cd9aa
+  timeout:5000
