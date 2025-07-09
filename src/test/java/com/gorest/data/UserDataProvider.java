@@ -1,18 +1,23 @@
 package com.gorest.data;
 
-import org.testng.annotations.*;
-
 import com.gorest.utils.RandomDataGenerator;
-public class UserDataProvider {
-	@DataProvider(name="validUsers")
-	public Object[][] validUsers(){
-		return new Object[][] {
-				
-				{ RandomDataGenerator.generateName(), RandomDataGenerator.generateEmail() },
-	            { RandomDataGenerator.generateName(), RandomDataGenerator.generateEmail()},
-	        };
-			}
-		}
-	}
+import org.testng.annotations.DataProvider;
 
+public class UserDataProvider {
+
+    @DataProvider(name = "validUsers")
+    public Object[][] provideValidUsers() {
+        return new Object[][]{
+                {RandomDataGenerator.generateFullName(), RandomDataGenerator.generateEmail(), "male", "active"},
+                {RandomDataGenerator.generateFullName(), RandomDataGenerator.generateEmail(), "female", "inactive"}
+        };
+    }
+
+    @DataProvider(name = "invalidUsers")
+    public Object[][] provideInvalidUsers() {
+        return new Object[][]{
+                {"", "", "", ""},                            // Empty fields
+                {"John Doe", "invalidEmail", "other", "on"}  // Bad formats
+        };
+    }
 }
