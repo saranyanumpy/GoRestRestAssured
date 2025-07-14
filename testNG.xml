@@ -1,40 +1,46 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="GoRest API Suite" parallel="false">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="GoRest API Suite" parallel="none">
 
-  <test name="Users Positive Tests">
-    <packages>
-      <package name="com.gorest.tests.users.positive" />
-    </packages>
+  <test name="Single - Create Users">
+    <classes>
+      <class name="com.gorest.tests.users.positive.CreateUserTest"/>
+    </classes>
   </test>
 
-  <test name="Users Negative Tests">
-    <packages>
-      <package name="com.gorest.tests.users.negative" />
-    </packages>
+  <test name="Single - Get All Users">
+    <classes>
+      <class name="com.gorest.tests.users.positive.GetAllUsersTest"/>
+    </classes>
   </test>
 
-  <test name="Posts Positive Tests">
-    <packages>
-      <package name="com.gorest.tests.posts.positive" />
-    </packages>
+  <test name="Single - Get User By ID">
+    <classes>
+      <class name="com.gorest.tests.users.positive.GetUserByIdTest"/>
+    </classes>
+  </test>
+  
+  <test name="Single - Update User By ID">
+    <classes>
+      <class name="com.gorest.tests.users.positive.UpdateUserTest"/>
+    </classes>
+  </test>
+  
+  <test name="Single - Patch User By ID">
+    <classes>
+      <class name="com.gorest.tests.users.positive.PatchUserTest"/>
+    </classes>
   </test>
 
-  <test name="Posts Negative Tests">
-    <packages>
-      <package name="com.gorest.tests.posts.negative" />
-    </packages>
-  </test>
-
-  <test name="Comments Positive Tests">
-    <packages>
-      <package name="com.gorest.tests.comments.positive" />
-    </packages>
-  </test>
-
-  <test name="Comments Negative Tests">
-    <packages>
-      <package name="com.gorest.tests.comments.negative" />
-    </packages>
-  </test>
+<test name="Single - Create Post">
+	    <classes>
+	      <class name="com.gorest.tests.posts.positive.CreatePostTest"/>
+	    </classes>
+	  </test>
+	  
+	  <test name="Single - Get All Post">
+	    <classes>
+	      <class name="com.gorest.tests.posts.positive.GetAllPostsTest"/>
+	    </classes>
+	  </test>
 
 </suite>

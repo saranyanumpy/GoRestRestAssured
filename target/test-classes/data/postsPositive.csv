@@ -1,1 +1,5 @@
-﻿
+testType,label,title,body
+POST,firstPost,5 Ways to Improve Soil Health,Healthy soil increases crop yield—learn organic ways to enrich your farmland.
+POST,secondPost,Top 10 Smart Irrigation Techniques,Discover how IoT is transforming water efficiency for modern farms.
+PUT,firstPut,Sustainable Farming Trends 2025,Updated with new data on regenerative agriculture and eco-friendly tools.
+PUT,secondPut,Agricultural Drone Usage 2025,Minor edit: added stats on drone-assisted crop monitoring.
