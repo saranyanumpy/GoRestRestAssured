@@ -1,0 +1,4 @@
+testType,name,email,body
+POST,,,
+PUT,Alice Smith,alice@example.com,Great post!
+PATCH,Santi Reed,santireed@test.com,Patch Comment.

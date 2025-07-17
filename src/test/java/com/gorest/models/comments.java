@@ -1,11 +1,31 @@
 package com.gorest.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.opencsv.bean.CsvBindByName;
+
 public class comments {
 	private int commentId;
-	private int postId;  // Each comment belongs to a post
+	@JsonProperty("post_id")  // ✅ Maps Java postId -> JSON post_id
+	private int postId; // Each comment belongs to a post
+	
+	public String getTestType() {
+		return testType;
+	}
+	public void setTestType(String testType) {
+		this.testType = testType;
+	}
+	@CsvBindByName(column = "testType") // ⚠️ Must match header exactly
+    private String testType;
+
+    @CsvBindByName(column = "name")
     private String name;
+
+    @CsvBindByName(column = "email")
     private String email;
+    
+    @CsvBindByName(column = "body")
     private String body;
+
     public int getCommentId() {
 		return commentId;
 	}

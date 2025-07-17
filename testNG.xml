@@ -1,46 +1,82 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="GoRest API Suite" parallel="none">
-
-  <test name="Single - Create Users">
-    <classes>
-      <class name="com.gorest.tests.users.positive.CreateUserTest"/>
-    </classes>
-  </test>
-
-  <test name="Single - Get All Users">
-    <classes>
-      <class name="com.gorest.tests.users.positive.GetAllUsersTest"/>
-    </classes>
-  </test>
-
-  <test name="Single - Get User By ID">
-    <classes>
-      <class name="com.gorest.tests.users.positive.GetUserByIdTest"/>
-    </classes>
-  </test>
-  
-  <test name="Single - Update User By ID">
-    <classes>
-      <class name="com.gorest.tests.users.positive.UpdateUserTest"/>
-    </classes>
-  </test>
-  
-  <test name="Single - Patch User By ID">
-    <classes>
-      <class name="com.gorest.tests.users.positive.PatchUserTest"/>
-    </classes>
-  </test>
-
-<test name="Single - Create Post">
+	
+	<suite name="GoRest API Test Suite" verbose="1" parallel="none">
+	
+	  <!-- 1️⃣ Create User First -->
+	  <test name="01 - Create User">
 	    <classes>
-	      <class name="com.gorest.tests.posts.positive.CreatePostTest"/>
+	      <class name="com.gorest.tests.users.positive.CreateUserTest"/>
 	    </classes>
 	  </test>
-	  
-	  <test name="Single - Get All Post">
+	
+	  <!-- 2️⃣ Posts Workflow (Create, GetById, Update, Patch) all in one class -->
+	  <test name="02 - Posts Workflow">
+	    <classes>
+	      <class name="com.gorest.tests.posts.positive.PostsWorkflowTest"/>
+	    </classes>
+	  </test>
+	  <!-- 🔄 Get All Users -->
+	  <test name="03 - Get All Users" parallel="classes">
+	    <classes>
+	      <class name="com.gorest.tests.users.positive.GetAllUsersTest"/>
+	    </classes>
+	  </test>
+	   <!-- 4️⃣ Get User By ID (validation) -->
+	  <test name="04 - Get User By ID">
+	    <classes>
+	      <class name="com.gorest.tests.users.positive.GetUserByIdTest"/>
+	    </classes>
+	  </test>
+	
+	 
+	  <!-- 5️⃣ Update User -->
+	  <test name="05 - Update User">
+	    <classes>
+	      <class name="com.gorest.tests.users.positive.UpdateUserTest"/>
+	    </classes>
+	  </test>
+	
+	  <!-- 6️⃣ Patch User -->
+	  <test name="06 - Patch User">
+	    <classes>
+	      <class name="com.gorest.tests.users.positive.PatchUserTest"/>
+	    </classes>
+	  </test>
+	
+	 <!-- 🔄 Get All Posts -->
+	  <test name="07 - Get All Posts" parallel="classes">
 	    <classes>
 	      <class name="com.gorest.tests.posts.positive.GetAllPostsTest"/>
 	    </classes>
 	  </test>
+	<!-- 3️⃣ COMMENTS MODULE -->
+	  <test name="08 - Comments Workflow">
+	    <classes>
+	      <class name="com.gorest.tests.comments.positive.CommentsWorkflowTest"/>
+	    </classes>
+	  </test>
+	<!-- 🔄 Get All Comments -->
+	  <test name="09 - Get All Comments" parallel="classes">
+	    <classes>
+	      <class name="com.gorest.tests.comments.positive.GetAllCommentsTest"/>
+	    </classes>
+	  </test>
+	  <test name="10 - Delete Comment">
+  <classes>
+    <class name="com.gorest.tests.delete.positive.DeleteCommentByCommentId"/>
+  </classes>
+</test>
 
-</suite>
+<test name="11 - Delete Post">
+  <classes>
+    <class name="com.gorest.tests.delete.positive.DeletePostByPostId"/>
+  </classes>
+</test>
+
+<test name="12 - Delete User">
+  <classes>
+    <class name="com.gorest.tests.delete.positive.DeleteUserByUserId"/>
+  </classes>
+</test>
+
+	  	
+	</suite>

@@ -41,6 +41,8 @@ public class PostsAssertUtil {
 		    AssertUtil.assertFieldEquals(response, "data.user_id", expectedUserId);
 		    AssertUtil.assertFieldEquals(response, "data.title", expectedTitle);
 		    AssertUtil.assertFieldEquals(response, "data.body", expectedBody);
+		    AssertUtil.assertPostsJsonSchema(response, "src/test/resources/schemas/postsSchema.json");
+	        AssertUtil.assertResponseTimeLessThan(response, 3000);
 
 		    logger.info("✅ POST created and validated successfully.");
 		}
@@ -72,47 +74,80 @@ public class PostsAssertUtil {
 		        AssertUtil.assertFieldIsInteger(response, postJsonPath + ".user_id");
 		        AssertUtil.assertFieldIsString(response, postJsonPath + ".title");
 		        AssertUtil.assertFieldIsString(response, postJsonPath + ".body");
+		     //   AssertUtil.assertPostsJsonSchema(response, "src/test/resources/schemas/postsSchema.json");
+		        AssertUtil.assertResponseTimeLessThan(response, 3000);
 		    }
 
 		    logger.info("✅ GET all posts validated successfully.");
 		}
 
+	// public static void assertGetPostById(Response response, int expectedPostId, String expectedTitle, String expectedBody) {
+		 public static void assertGetPostById(Response response, int expectedPostId) {
+			    AssertUtil.assertStatusCode(response, 200);
+			    AssertUtil.assertFieldEquals(response, "data.id", expectedPostId);
+			    AssertUtil.assertResponseHasField(response, "data.title");
+			    AssertUtil.assertResponseHasField(response, "data.body");
+			    AssertUtil.assertFieldIsInteger(response, "data.user_id");
+			    AssertUtil.assertPostsJsonSchema(response, "src/test/resources/schemas/postsSchema.json");
+			  //  AssertUtil.assertPostsJsonSchema(response, "src/test/resources/schemas/postsSchema.json");
+		        AssertUtil.assertResponseTimeLessThan(response, 3000);
+			    logger.info("✅ GET post by ID validated successfully.");
+			}
 
-//	public static void assertPostUpdated(Response response, String expectedName, String expectedEmail, String expectedGender, String expectedStatus) {
-//	    logger.debug("Asserting user creation fields...");
-//
-//	 		AssertUtil.assertStatusCode(response, 200);
-//
-//	    AssertUtil.assertResponseHasField(response, "data.id");
-//	    AssertUtil.assertResponseHasField(response, "data.name");
-//	    AssertUtil.assertResponseHasField(response, "data.email");
-//	    AssertUtil.assertResponseHasField(response, "data.gender");
-//	    AssertUtil.assertResponseHasField(response, "data.status");
-//
-//	    // Normalize values before comparing
-//	    AssertUtil.assertFieldEquals(response, "data.name", expectedName);
-//	    AssertUtil.assertFieldEquals(response, "data.email", expectedEmail);
-//	    AssertUtil.assertFieldEquals(response, "data.gender", expectedGender.toLowerCase());
-//	    AssertUtil.assertFieldEquals(response, "data.status", expectedStatus.toLowerCase());
-//	    logger.info("User creation validated successfully.");
-//	}
-//	
-//	public static void assertPostPatch(Response response, String expectedName, String expectedEmail, String expectedGender, String expectedStatus) {
-//	    logger.debug("Asserting user creation fields...");
-//
-//	 		AssertUtil.assertStatusCode(response, 200);
-//
-//	    AssertUtil.assertResponseHasField(response, "data.id");
-//	    AssertUtil.assertResponseHasField(response, "data.name");
-//	    AssertUtil.assertResponseHasField(response, "data.email");
-//	    AssertUtil.assertResponseHasField(response, "data.gender");
-//	    AssertUtil.assertResponseHasField(response, "data.status");
-//
-//	    // Normalize values before comparing
-//	    AssertUtil.assertFieldEquals(response, "data.name", expectedName);
-//	    AssertUtil.assertFieldEquals(response, "data.email", expectedEmail);
-//	    AssertUtil.assertFieldEquals(response, "data.gender", expectedGender.toLowerCase());
-//	    AssertUtil.assertFieldEquals(response, "data.status", expectedStatus.toLowerCase());
-//	    logger.info("User creation validated successfully.");
-//	}
+public static void assertPostUpdated(Response response, int expectedUserId, String expectedTitle, String expectedBody) {
+    // Assert the status code is 201 (Created) for a POST request
+    AssertUtil.assertStatusCode(response, 200);
+
+    // Assert the "data" field is not null
+    AssertUtil.assertFieldNotNull(response, "data");
+
+    // Assert the required fields in "data"
+    AssertUtil.assertResponseHasField(response, "data.id");
+    AssertUtil.assertResponseHasField(response, "data.user_id");
+    AssertUtil.assertResponseHasField(response, "data.title");
+    AssertUtil.assertResponseHasField(response, "data.body");
+
+    // Validate the field types (example: id and user_id should be integers, title and body should be strings)
+    AssertUtil.assertFieldIsInteger(response, "data.id");
+    AssertUtil.assertFieldIsInteger(response, "data.user_id");
+    AssertUtil.assertFieldIsString(response, "data.title");
+    AssertUtil.assertFieldIsString(response, "data.body");
+
+    // Ensure the values returned match the expected ones
+    AssertUtil.assertFieldEquals(response, "data.user_id", expectedUserId);
+    AssertUtil.assertFieldEquals(response, "data.title", expectedTitle);
+    AssertUtil.assertFieldEquals(response, "data.body", expectedBody);
+    AssertUtil.assertPostsJsonSchema(response, "src/test/resources/schemas/postsSchema.json");
+    AssertUtil.assertResponseTimeLessThan(response, 3000);
+    logger.info("✅ POST created and validated successfully.");
+}
+
+
+public static void assertPostPatched(Response response, int expectedUserId, String expectedTitle, String expectedBody) {
+    // Assert the status code is 201 (Created) for a POST request
+    AssertUtil.assertStatusCode(response, 200);
+
+    // Assert the "data" field is not null
+    AssertUtil.assertFieldNotNull(response, "data");
+
+    // Assert the required fields in "data"
+    AssertUtil.assertResponseHasField(response, "data.id");
+    AssertUtil.assertResponseHasField(response, "data.user_id");
+    AssertUtil.assertResponseHasField(response, "data.title");
+    AssertUtil.assertResponseHasField(response, "data.body");
+
+    // Validate the field types (example: id and user_id should be integers, title and body should be strings)
+    AssertUtil.assertFieldIsInteger(response, "data.id");
+    AssertUtil.assertFieldIsInteger(response, "data.user_id");
+    AssertUtil.assertFieldIsString(response, "data.title");
+    AssertUtil.assertFieldIsString(response, "data.body");
+
+    // Ensure the values returned match the expected ones
+    AssertUtil.assertFieldEquals(response, "data.user_id", expectedUserId);
+    AssertUtil.assertFieldEquals(response, "data.title", expectedTitle);
+    AssertUtil.assertFieldEquals(response, "data.body", expectedBody);
+    AssertUtil.assertPostsJsonSchema(response, "src/test/resources/schemas/postsSchema.json");
+    AssertUtil.assertResponseTimeLessThan(response, 3000);
+    logger.info("✅ POST created and validated successfully.");
+}
 }

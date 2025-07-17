@@ -31,46 +31,45 @@ public class PostsDataProvider {
 
 //
 //    // ✅ PUT data from users.csv
-//    @DataProvider(name = "updateUserData")
-//    public Object[][] provideUpdateUserData() {
-//        List<users> allUsers = CsvReaderUtil.readCsv("usersPositives.csv", users.class);
-//
-//        List<users> putUsers = allUsers.stream()
-//        		.filter(u -> u.getTestType() != null && "PUT".equalsIgnoreCase(u.getTestType().trim()))
-//        		.toList();
-//
-//        Object[][] testData = new Object[putUsers.size()][4];
-//        for (int i = 0; i < putUsers.size(); i++) {
-//            users u = putUsers.get(i);
-//            testData[i][0] = u.getName().trim();
-//            testData[i][1] = u.getEmail().trim();
-//            testData[i][2] = u.getGender().trim();
-//            testData[i][3] = u.getStatus().trim();
-//        }
-//
-//        return testData;
-//    }
-//
+	@DataProvider(name = "UpdatePostTest")
+	public Object[][] provideUpdatePostsData() {
+	    List<posts> postList = CsvReaderUtil.readCsv("postsPositive.csv", posts.class);
+
+	    List<posts> postRows = postList.stream()
+	            .filter(p -> "PUT".equalsIgnoreCase(p.getTestType()))
+	            .toList();
+
+	    Object[][] testData = new Object[postRows.size()][3];
+	    for (int i = 0; i < postRows.size(); i++) {
+	        posts p = postRows.get(i);
+	        testData[i][0] = p.getLabel();
+	        testData[i][1] = p.getTitle();
+	        testData[i][2] = p.getBody();
+	    }
+
+	    return testData;
+	}
+
+	
 //    // ✅ PATCH data from users.csv
-//    @DataProvider(name = "patchUserData")
-//    public Object[][] providePatchUserData() {
-//        List<users> allUsers = CsvReaderUtil.readCsv("usersPositives.csv", users.class);
-//
-//        List<users> putUsers = allUsers.stream()
-//        		.filter(u -> u.getTestType() != null && "PATCH".equalsIgnoreCase(u.getTestType().trim()))
-//        		.toList();
-//
-//        Object[][] testData = new Object[putUsers.size()][4];
-//        for (int i = 0; i < putUsers.size(); i++) {
-//            users u = putUsers.get(i);
-//            testData[i][0] = u.getName().trim();
-//            testData[i][1] = u.getEmail().trim();
-//            testData[i][2] = u.getGender().trim();
-//            testData[i][3] = u.getStatus().trim();
-//        }
-//
-//        return testData;
-//    }
+    @DataProvider(name = "PatchPostTest")
+	public Object[][] providePatchPostsData() {
+	    List<posts> postList = CsvReaderUtil.readCsv("postsPositive.csv", posts.class);
+
+	    List<posts> postRows = postList.stream()
+	            .filter(p -> "PATCH".equalsIgnoreCase(p.getTestType()))
+	            .toList();
+
+	    Object[][] testData = new Object[postRows.size()][3];
+	    for (int i = 0; i < postRows.size(); i++) {
+	        posts p = postRows.get(i);
+	        testData[i][0] = p.getLabel();
+	        testData[i][1] = p.getTitle();
+	        testData[i][2] = p.getBody();
+	    }
+
+	    return testData;
+	}
 
     // ✅ Hardcoded negative test data
     @DataProvider(name = "invalidUsers")

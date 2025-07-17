@@ -1,4 +1,4 @@
 testType,name,email,gender,status
 POST,,,female,active
-PUT,AlexPeterD,AlexPeterD@test.com,male,active
-PATCH,SamApexD,samapexD@test.com,female,inactive
+PUT,AlexPeterY,AlexPeterY@test.com,male,active
+PATCH,SamApexY,samapexY@test.com,female,inactive

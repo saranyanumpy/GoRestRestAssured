@@ -24,6 +24,17 @@ public class AssertUtil {
         File schema = new File(schemaFilePath);
         response.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(schema));
     }
+    // POSTS JSON Schema Validation
+    public static void assertPostsJsonSchema(Response response, String schemaFilePath) {
+        File schema = new File(schemaFilePath);
+        response.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(schema));
+    }
+    
+ // COMMENTS JSON Schema Validation
+    public static void assertCommentsJsonSchema(Response response, String schemaFilePath) {
+        File schema = new File(schemaFilePath);
+        response.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(schema));
+    }
 
     /**
      * Validates that the response has the expected HTTP status code.

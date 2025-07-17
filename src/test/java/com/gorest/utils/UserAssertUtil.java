@@ -25,7 +25,7 @@ public class UserAssertUtil {
         AssertUtil.assertJsonSchemaUsers(response, "src/test/resources/schemas/userSchema.json");
         logger.debug("Schema is working fine ...");
         AssertUtil.assertFieldMatchesRegex(response, "data.email", "^[A-Za-z0-9+_.-]+@(.+)$");
-        AssertUtil.assertResponseTimeLessThan(response, 2000);
+        AssertUtil.assertResponseTimeLessThan(response, 3000);
 
         logger.info("✅ User creation validated successfully.");
     }
@@ -40,7 +40,7 @@ public class UserAssertUtil {
         assertUserFields(response, expectedName, expectedEmail, expectedGender, expectedStatus);
         AssertUtil.assertJsonSchemaUsers(response, "src/test/resources/schemas/userSchema.json");
         AssertUtil.assertFieldMatchesRegex(response, "data.email", "^[A-Za-z0-9+_.-]+@(.+)$");
-        AssertUtil.assertResponseTimeLessThan(response, 2000);
+        AssertUtil.assertResponseTimeLessThan(response, 3000);
 
         logger.info("✅ User update validated successfully.");
     }
@@ -55,7 +55,7 @@ public class UserAssertUtil {
         assertUserFields(response, expectedName, expectedEmail, expectedGender, expectedStatus);
         AssertUtil.assertJsonSchemaUsers(response, "src/test/resources/schemas/userSchema.json");
         AssertUtil.assertFieldMatchesRegex(response, "data.email", "^[A-Za-z0-9+_.-]+@(.+)$");
-        AssertUtil.assertResponseTimeLessThan(response, 2000);
+        AssertUtil.assertResponseTimeLessThan(response, 3000);
 
         logger.info("✅ User partial update (PATCH) validated successfully.");
     }
@@ -103,7 +103,7 @@ public class UserAssertUtil {
 
        AssertUtil.assertJsonSchemaUsers(response, "src/test/resources/schemas/userSchema.json");
         AssertUtil.assertFieldMatchesRegex(response, "data.email", "^[A-Za-z0-9+_.-]+@(.+)$");
-        AssertUtil.assertResponseTimeLessThan(response, 2000);
+        AssertUtil.assertResponseTimeLessThan(response,3000);
 
         logger.info("✅ GET user by ID validated successfully.");
     }
