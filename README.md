@@ -153,7 +153,9 @@ All test-created records are cleaned up via DELETE endpoints
 🧾 Version Control
 GitHub Repo: GoRestRestAssured
 
+## ✅ Jenkins Build Screenshot
 ![Jenkins Build Success](images/Jenkins1.png)
+
 🙋‍♀️ Author
 Saranya Seenivasan
 💻 SDET | UI | API | Automation | Testing Portfolio
