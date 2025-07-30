@@ -4,7 +4,18 @@ import com.opencsv.bean.CsvBindByName;
 
 public class users {
 
-    @CsvBindByName(column = "testType") // ⚠️ Must match header exactly
+	@CsvBindByName(column = "testType") // ⚠️ Must match header exactly
+    private String userId;
+
+    public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	@CsvBindByName(column = "testType") // ⚠️ Must match header exactly
     private String testType;
 
     @CsvBindByName(column = "name")

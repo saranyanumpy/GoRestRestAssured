@@ -150,4 +150,62 @@ public static void assertPostPatched(Response response, int expectedUserId, Stri
     AssertUtil.assertResponseTimeLessThan(response, 3000);
     logger.info("✅ POST created and validated successfully.");
 }
+public static void assertMissingField(Response response, String title, String body, int userId) {
+    logger.debug("Asserting user Existing creation fields...");
+
+        // If the user already exists, we should expect a conflict (409 status code)
+        AssertUtil.assertStatusCode(response, 422);  // Assuming 409 is returned for duplicate user creation
+
+        // Assert that the error message indicates the user already exists
+        AssertUtil.assertFieldContains(response, "data.message", "can't be blank");
+
+    }
+
+    public static void assertGetByInvalidPostId(Response response, String postId) {
+    	AssertUtil.assertStatusCode(response, 404);
+    	AssertUtil.assertFieldContains(response, "data.message", "Resource not found");
+
+               // "Expected 'resource not found' in response for postId: " + postId);
+    }
+    
+    public static void assertPatchByInvalidPostId(Response response, String postId) {
+        AssertUtil.assertStatusCode(response, 404);
+
+        if (response.getContentType().contains("application/json")) {
+            AssertUtil.assertFieldContains(response, "data.message", "Resource not found");
+        } else {
+            System.out.println("⚠️ Response is not JSON for postId: " + postId);
+            System.out.println("Raw response: " + response.getBody().asString());
+        }
+    }
+//    public static void assertUpdateByMissingField(Response response, String postId) {
+//        AssertUtil.assertStatusCode(response, 404);
+//
+//        String contentType = response.getContentType();
+//        if (contentType != null && contentType.contains("application/json")) {
+//            AssertUtil.assertFieldContains(response, "data.message", "Resource not found");
+//        } else {
+//            System.out.println("⚠️ Skipping JSON field assertion for postId " + postId + " because response is not JSON.");
+//            System.out.println("Raw response: " + response.asString());
+//        }
+//    }
+    public static void assertUpdateByMissingField(Response response, String title, String body, int userId,String postId) {
+        logger.debug("Asserting user Existing creation fields...");
+
+            // If the user already exists, we should expect a conflict (409 status code)
+            AssertUtil.assertStatusCode(response, 422);  // Assuming 409 is returned for duplicate user creation
+
+            // Assert that the error message indicates the user already exists
+            AssertUtil.assertFieldContains(response, "data.message", "can't be blank");
+
+        }
+//    public static void assertGetByInvalidPostId(Response response, String postId) {
+//        AssertUtil.assertStatusCode(response, 404);
+//        AssertUtil.assertFieldContains(response, "data.message", "Resource not found");
+//    }
+//    public static void assertGetByInvalidPostId(Response response, String postId) {
+//        Assert.assertEquals(response.getStatusCode(), 404, "Expected 404 for invalid post ID");
+//        Assert.assertTrue(response.asString().toLowerCase().contains("resource not found"),
+//                "Expected 'resource not found' in response for postId: " + postId);
+//    }
 }

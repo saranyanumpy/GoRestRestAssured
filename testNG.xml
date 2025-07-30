@@ -8,7 +8,7 @@
 	    </classes>
 	  </test>
 	
-	  <!-- 2️⃣ Posts Workflow (Create, GetById, Update, Patch) all in one class -->
+	 //  2️⃣ Posts Workflow (Create, GetById, Update, Patch) all in one class -->
 	  <test name="02 - Posts Workflow">
 	    <classes>
 	      <class name="com.gorest.tests.posts.positive.PostsWorkflowTest"/>
@@ -76,7 +76,99 @@
   <classes>
     <class name="com.gorest.tests.delete.positive.DeleteUserByUserId"/>
   </classes>
+</test>  
+	 <test name="13 - Create User with Malformed JSON">
+  <classes>
+    <class name="com.gorest.tests.users.negative.CreateMalformedUsersTest"/>
+  </classes>
 </test>
 
-	  	
-	</suite>
+<test name="14 - Create User with Existing JSON">
+  <classes>
+    <class name="com.gorest.tests.users.negative.CreateExistingUsersTest"/>
+  </classes>
+</test>
+
+<test name="15 - Create User with Missing Name">
+  <classes>
+    <class name="com.gorest.tests.users.negative.CreateUserMissingName"/>
+  </classes>
+  </test>
+  
+  <test name="16 - Create User with Invalid Email">
+  <classes>
+    <class name="com.gorest.tests.users.negative.CreateUserMissingName"/>
+  </classes>
+</test>
+
+<test name="17 - Create User with Invalid Gender">
+  <classes>
+    <class name="com.gorest.tests.users.negative.CreateInvalidGenderUsersTest"/>
+  </classes>
+</test>
+
+<test name="18 - Get By User with Invalid Id">
+  <classes>
+    <class name="com.gorest.tests.users.negative.GetByInvalidUserId"/>
+  </classes>
+</test>
+
+<test name="19 - Update User with Invalid Email">
+  <classes>
+    <class name="com.gorest.tests.users.negative.UpdateByInvalidEmail"/>
+  </classes>
+  </test>
+  
+  <test name="20 - Update User with Missing field">
+  <classes>
+    <class name="com.gorest.tests.users.negative.UpdateByMissingField"/>
+  </classes>
+  </test>
+  
+  <test name="21 - Patch User with Invalid Email">
+  <classes>
+    <class name="com.gorest.tests.users.negative.PatchInvalidEmail"/>
+  </classes>
+  </test>
+  
+  <test name="22 - Create Posts Malformed JSON">
+  <classes>
+    <class name="com.gorest.tests.posts.negative.CreatePostMalformedJsonTest"/>
+  </classes>
+  </test>
+  
+  <test name="23 - Create Posts Invalid Token">
+  <classes>
+    <class name="com.gorest.tests.posts.negative.CreatePostInvalidToken"/>
+  </classes>
+  </test>
+ 
+ <test name="24 - Create Posts Invalid UserId">
+  <classes>
+    <class name="com.gorest.tests.posts.negative.CreatePostInvalidUserIdTest"/>
+  </classes>
+  </test>
+  
+  <test name="25 - Create Posts Missing Field">
+  <classes>
+    <class name="com.gorest.tests.posts.negative.CreatePostMissingFieldsTest"/>
+  </classes>
+  </test>
+<test name="26 - Get By PostId">
+  <classes>
+    <class name="com.gorest.tests.posts.negative.GetPostInvalidIdTest"/>
+  </classes>
+  </test>
+
+   <test name="27 - Patch By Invalid PostId">
+  <classes>
+    <class name="com.gorest.tests.posts.negative.PatchPostWithInvalidPostIdTest"/>
+  </classes>
+  </test>
+  
+   <test name="27 - Update By Missing Field">
+  <classes>
+    <class name="com.gorest.tests.posts.negative.UpdatePostMissingFieldsTest"/>
+  </classes>
+  </test>
+</suite>

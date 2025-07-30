@@ -123,4 +123,58 @@ public class UserAssertUtil {
         AssertUtil.assertFieldEquals(response, "data.gender", expectedGender.toLowerCase());
         AssertUtil.assertFieldEquals(response, "data.status", expectedStatus.toLowerCase());
     }
+    
+    //Negative Assertion
+    
+    public static void assertExistingUserCreated(Response response, String name, String email, String expectedGender, String expectedStatus) {
+        logger.debug("Asserting user Existing creation fields...");
+
+            // If the user already exists, we should expect a conflict (409 status code)
+            AssertUtil.assertStatusCode(response, 422);  // Assuming 409 is returned for duplicate user creation
+
+            // Assert that the error message indicates the user already exists
+            AssertUtil.assertFieldContains(response, "data.message", "has already been taken");
+
+        }
+    public static void assertMissingUserName(Response response, String email, String expectedGender, String expectedStatus) {
+        logger.debug("Asserting user Existing creation fields...");
+
+            // If the user already exists, we should expect a conflict (409 status code)
+            AssertUtil.assertStatusCode(response, 422);  // Assuming 409 is returned for duplicate user creation
+
+            // Assert that the error message indicates the user already exists
+            AssertUtil.assertFieldContains(response, "data.message", "can't be blank");
+
+        }
+    
+    public static void assertInvalidGenderUserCreated(Response response, String name,String email, String expectedGender, String expectedStatus) {
+        logger.debug("Asserting user Existing creation fields...");
+
+            // If the user already exists, we should expect a conflict (409 status code)
+            AssertUtil.assertStatusCode(response, 422);  // Assuming 409 is returned for duplicate user creation
+
+            // Assert that the error message indicates the user already exists
+            AssertUtil.assertFieldContains(response, "data.message", "can't be blank");
+
+        }
+    public static void assertGetByInvalidUserId(Response response, String userId) {
+        logger.debug("Asserting GET user by invalid userId: {}", userId);
+
+        // ✅ Status code should be 404
+        AssertUtil.assertStatusCode(response, 404);
+
+        // ✅ Assert message field in body
+        AssertUtil.assertFieldEquals(response, "message", "Resource not found");
+    }
+    public static void assertInvalidEmail(Response response, String userId,String name,String email,String gender,String status) {
+        logger.debug("Asserting Invalid Email");
+
+        // ✅ Status code should be 404
+        AssertUtil.assertStatusCode(response, 404);
+
+        // ✅ Assert message field in body
+        AssertUtil.assertFieldEquals(response, "data.message", "Resource not found");
+    }
 }
+
+

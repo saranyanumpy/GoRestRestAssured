@@ -6,7 +6,6 @@ import com.gorest.base.BaseTest;
 import com.gorest.data.UserDataProvider;
 import com.gorest.endpoints.APIEndpoints;
 import com.gorest.models.users;
-import com.gorest.utils.RandomDataGenerator;
 import com.gorest.utils.UserAssertUtil;
 import com.gorest.utils.TestDataManager;
 
@@ -43,7 +42,6 @@ public class UpdateUserTest extends BaseTest {
                 .then()
                 .log().all()
                 .extract().response();
-
         // ✅ Validate response
         UserAssertUtil.assertUserUpdated(response, name, email, gender, status);
 

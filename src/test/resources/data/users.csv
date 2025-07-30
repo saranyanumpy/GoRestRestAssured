@@ -7,4 +7,5 @@ POST-MISSINGNAME,,lakeview@test.com,female,active,
 POST-INVALIDEMAIL,CalebTylor,calebtyplortestcom,male,inactive,
 POST-INVALIDGENDER,CalebTylor,calebtyplortestcom,hello,inactive,
 GETBY-INVALIDID,,,,,abc
-PUT-BY-INVALIDEMAIL,EmilyAnderson,emilyandersontest.com,female,inactive,
+PUT-BY-INVALIDEMAIL,EmilyAnderson,emilyandersontest.com,female,inactive,9999
+PUTBY-MISSINGFIELD,James,,,,99999

@@ -1,5 +1,12 @@
-testType,label,title,body
-POST,firstPost,5 Ways to Improve Soil Health,Healthy soil increases crop yield—learn organic ways to enrich your farmland.
-POST,secondPost,Top 10 Smart Irrigation Techniques,Discover how IoT is transforming water efficiency for modern farms.
-PUT,firstPut,Sustainable Farming Trends 2025,Updated with new data on regenerative agriculture and eco-friendly tools.
-PATCH,firstPatch,Patch Sustainable Farming Trends 2025,Patched with new data on regenerative agriculture and eco-friendly tools.
+testType,label,title,body,userId,postId
+POST,firstPost,5 Ways to Improve Soil Health,Healthy soil increases crop yield—learn organic ways to enrich your farmland.,,
+POST,secondPost,Top 10 Smart Irrigation Techniques,Discover how IoT is transforming water efficiency for modern farms.,,
+PUT,firstPut,Sustainable Farming Trends 2025,Updated with new data on regenerative agriculture and eco-friendly tools.,,
+PATCH,firstPatch,Patch Sustainable Farming Trends 2025,Patched with new data on regenerative agriculture and eco-friendly tools.,,
+POST-INVALID-TOKEN,,excessiveTitle,Healthy soil increases crop yield—learn organic ways to enrich your farmland SALE.,103,
+POST-HTML-INJECTION,,<script>alert('XSS')</script>,Testing to see how the system handles potential XSS attack payloads,8035254,
+POST-INVALID-USERID,,"Invalid User ID Post	","Attempting to create a post for a non-existent user.	",999999,
+POST-MISSING-FIELD,,,"This post has no title, only a body.",105,
+GET-BY-INVALID-ID,,,,ABCD,ABCD
+UPDATE-POST-MISSING-FIELD,,"This post has title, not a body.",,282,
+PATCH-INVALID-POSTID,,,,,abcd

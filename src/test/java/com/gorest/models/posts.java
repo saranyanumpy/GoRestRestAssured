@@ -16,6 +16,17 @@ public class posts {
 	@CsvBindByName(column = "body")
     private String body;
 	
+	@CsvBindByName(column = "postId")
+    private String postId;
+	
+	public String getPostId() {
+		return postId;
+	}
+
+	public void setPostId(String postId) {
+		this.postId = postId;
+	}
+
 	// Required to associate post with user
 	@JsonProperty("user_id")
     private int userId;
