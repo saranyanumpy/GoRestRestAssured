@@ -13,13 +13,13 @@ This project showcases REST API test automation for the [GoRest public API](http
 
 ## 🚀 Tech Stack
 
-- Java 17
-- REST Assured
-- TestNG
-- Maven
-- Jackson (JSON mapping)
-- OpenCSV (CSV parsing)
-- SLF4J + Logback (logging)
+- Java 17  
+- REST Assured  
+- TestNG  
+- Maven  
+- Jackson (JSON mapping)  
+- OpenCSV (CSV parsing)  
+- SLF4J + Logback (logging)  
 
 ---
 
@@ -32,7 +32,7 @@ src/
 │ ├── models/ # POJOs for Users, Posts, Comments
 │ ├── utils/ # Assertions, schema validator, logger, CSV reader, TestDataManager
 │ └── data/ # CSV DataProviders for test inputs
-│
+
 ├── test/java/com/gorest/tests/
 │ ├── users/
 │ │ ├── positive/
@@ -44,7 +44,7 @@ src/
 │ │ ├── positive/
 │ │ └── negative/
 │ └── delete/ # Delete by userId, postId, commentId
-│
+
 └── resources/
 ├── data/ # CSV test data files
 └── schemas/ # JSON schema files for validation
@@ -81,56 +81,55 @@ Copy
 
 ## 🧬 Data-Driven Testing
 
-- POST, PUT, PATCH tests are fully data-driven  
-- Test data is stored in CSV files under `resources/data/`  
-- Uses OpenCSV to deserialize CSV into Java POJOs  
-- Conditional execution based on testType field and null checks
+- POST, PUT, PATCH tests are data-driven  
+- Test data is sourced from CSV files in `resources/data/`  
+- Uses OpenCSV to load CSV data into POJOs  
+- Supports conditional execution using `testType` and null checks  
 
 ---
 
 ## ✅ Assertions & Validations
 
-- ✅ Status code checks (200, 201, 204, 422, 404)
-- ✅ Field-level response validation
-- ✅ JSON schema validation with `.json` schemas
-- ✅ Regex validations (e.g., email format)
-- ✅ Performance: max response time under 3000ms
+- ✅ HTTP status code validations (200, 201, 204, 422, 404)  
+- ✅ Field-level assertions  
+- ✅ JSON schema validation  
+- ✅ Regex validations (e.g., email format)  
+- ✅ Performance: response time < 3000ms  
 
 ---
 
 ## 🔀 Execution Strategy
 
-- ✅ Parallel execution for independent tests like GetAllUsers/GetAllPosts  
-- ✅ Sequential execution for chained operations using `dependsOnMethods`  
-- ✅ Thread-safe `TestDataManager` using `ThreadLocal` when needed
+- ✅ Parallel execution for independent tests (e.g., GetAllUsers, GetAllPosts)  
+- ✅ Sequential execution using `dependsOnMethods` for chained tests  
+- ✅ Thread-safe data handling with `ThreadLocal` in `TestDataManager`  
 
 ---
 
 ## 🧪 How to Run Tests
 
-### Requirements
-- Java 17+
+### Requirements:
+- Java 17+  
 - Maven
 
-### Run All Tests
+### Run All Tests:
 ```bash
 mvn clean test
-Run Specific Suite
+Run Specific Suite:
 bash
 Copy
 mvn test -DsuiteXmlFile=testng.xml
 🔁 CI/CD: Jenkins Integration
-Jenkins is configured to run testng.xml using Maven on every build
+Jenkins is configured to run testng.xml using Maven
 
-Tests run using:
-mvn clean test -DsuiteXmlFile=testng.xml
+Build command: mvn clean test -DsuiteXmlFile=testng.xml
 
-Results are published via JUnit and optionally via HTML reports
+Results published using JUnit + HTML reports (optional)
 
 In local setup:
 Jenkins is manually triggered after each push
 
-GitHub webhook integration is possible using ngrok or a cloud-hosted Jenkins instance
+GitHub webhook integration is possible using ngrok or a cloud Jenkins setup
 
 ✅ Build Success Example:
 
@@ -142,17 +141,20 @@ Response Time: ✅ < 2000ms
 
 Schema Validation: ✅ Passed
 
-Logs: Available via SLF4J console output
+Logs: Available in SLF4J console output
 
 📌 Notes
-GoRest is a public API; duplicate or invalid IDs may appear if run frequently
+GoRest is a public API, so data conflicts may occur
 
-All test data uses randomized email/ID to ensure uniqueness
+Unique data is generated using random values
 
-DELETE calls are used to clean up created data during test runs
+All test-created records are cleaned up via DELETE endpoints
 
 🧾 Version Control
-Project hosted on GitHub: GoRestRestAssured
+GitHub Repo: GoRestRestAssured
+
+## ✅ Jenkins Build Screenshot
+![Jenkins Build Success](images/Jenkins1.png)
 
 🙋‍♀️ Author
 Saranya Seenivasan
